@@ -54,6 +54,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 }
 
 
+// MARK: - CoinManagerDelegate
+
 extension ViewController: CoinManagerDelegate {
     
     func didUpdateCoin(_ coinManager: CoinManager, coin: CoinModel) {
