@@ -30,7 +30,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCurrency = coinManger.currencyArray[row]
         coinManger.fechCoin(moneda: selectedCurrency)
-        
+        self.currencyLabel.text = selectedCurrency
     }
     
     
