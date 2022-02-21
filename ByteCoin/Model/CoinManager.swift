@@ -24,9 +24,10 @@ struct CoinManager {
    
     var delegate: CoinManagerDelegate?
     
-    func fechCoin (cripto: String, moneda: String) {
-        let urlString = "\(baseURL)\(cripto)/\(moneda)?apikey=\(apiKey)"
+    func fechCoin (moneda: String) {
+        let urlString = "\(baseURL)BTC/\(moneda)?apikey=\(apiKey)"
         perfomRequest(urlString: urlString)
+        
     }
     
     func perfomRequest (urlString: String) {

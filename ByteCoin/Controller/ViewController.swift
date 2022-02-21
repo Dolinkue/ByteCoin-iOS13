@@ -8,9 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
-{
-    let coinManger = CoinManager()
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    
+    var coinManger = CoinManager()
+    
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -26,7 +29,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCurrency = coinManger.currencyArray[row]
-        coinManger.getCoinPrice(for: selectedCurrency)
+        coinManger.fechCoin(moneda: selectedCurrency)
+        
     }
     
     
@@ -40,9 +44,27 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+        coinManger.delegate = self
+        
+        
         
     }
 
 
 }
 
+
+extension ViewController: CoinManagerDelegate {
+    
+    func didUpdateCoin(_ coinManager: CoinManager, coin: CoinModel) {
+        DispatchQueue.main.async {
+            self.bitcoinLabel.text = coin.cambioString
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+    
+    
+}
